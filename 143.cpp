@@ -2,16 +2,9 @@
 #include <queue>
 #include <string>
 #include <iostream>
+#include "ListNode.cpp"
 
 using namespace std;
-
-struct ListNode {
-	int val;
-	ListNode *next;
-	ListNode() : val(0), next(nullptr) {}
-	ListNode(int x) : val(x), next(nullptr) {}
-	ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
 
 int getLength(ListNode* head)
 {
@@ -24,43 +17,14 @@ int getLength(ListNode* head)
 	}
 	return length;
 }
-
-void print(ListNode* head)
-{
-	ListNode* current = head;
-	while(current != nullptr)
-	{
-		cout << current->val << " -> ";
-		current = current->next;
-	}
-	cout << "nullptr" << endl;
-}
-
-void buildList(ListNode* head)
-{
-	ListNode* current = head;
-	cout << "NODES: ";
-	int end;
-	cin >> end;
-	for (int i = 0; i < end-1; i++)
-	{
-		current->next = new ListNode;
-		cout << "NODE " << i << " VALUE: ";
-		cin >> current->val;
-		current = current->next;
-	}
-	cout << "NODE " << end << " VALUE: ";
-	cin >> current -> val;
-}
  
 int main()
 {
-	ListNode *head = new ListNode(0);
+	ListNode *head = buildList();
+
 	ListNode *current = head;
 	queue<ListNode*> q;
 	stack<ListNode*> s;
-
-	buildList(head);
 	int listLength = getLength(head);
 	
 	if(head = nullptr) 

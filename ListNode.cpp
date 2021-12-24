@@ -37,7 +37,7 @@ ListNode* buildList()
 		cin >> current->val;
 		current = current->next;
 	}
-	cout << "NODE " << end << " VALUE: ";
+	cout << "NODE " << end-1 << " VALUE: ";
 	cin >> current -> val;
 	return out;
 }
