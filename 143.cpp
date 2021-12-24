@@ -42,50 +42,73 @@ void buildList(ListNode* head)
 	cout << "NODES: ";
 	int end;
 	cin >> end;
-	for (int i = 0; i < end; i++)
+	for (int i = 0; i < end-1; i++)
 	{
 		current->next = new ListNode;
 		cout << "NODE " << i << " VALUE: ";
 		cin >> current->val;
 		current = current->next;
 	}
+	cout << "NODE " << end << " VALUE: ";
+	cin >> current -> val;
 }
  
 int main()
 {
 	ListNode *head = new ListNode(0);
 	ListNode *current = head;
-	queue<ListNode> q;
-	stack<ListNode> s;
-	int listLength = getLength(head);
+	queue<ListNode*> q;
+	stack<ListNode*> s;
 
 	buildList(head);
+	int listLength = getLength(head);
+	
+	if(head = nullptr) 
+	{
+		return nullptr;
+	}
+	
+	if(listLength = 1) 
+	{
+		print(head);
+		return 0;
+	}
 	print(head);
 
-	current = head->next;
-	for(int i = 1; i <= listLength/2; i++)
+	ListNode* temp;
+	current = head;
+	for(int i = 0; i < (listLength/2)+1; i++)
 	{
-		q.push(*current);
+		q.push(current);
+		temp = current;
 		current = current->next;
+		temp->next = nullptr;
 	}
 
-	for(int i = listLength/2; i < listLength; i++)
+	for(int i = ((listLength/2)+1); i < listLength; i++)
 	{
-		s.push(*current);
+		s.push(current);
+		temp = current;
 		current = current->next;
+		temp->next = nullptr;
 	}
 
-	ListNode* newHead = head;
-	current = newHead;
-	while(!(s.empty()) && !(q.empty()))
+	current = head;
+	while(1)
 	{
-		current->next = &(q.front());
+		current -> next = q.front();
 		q.pop();
 		current = current->next;
-		current->next = &(s.top());
+		if(q.empty()) { break; }
+		if(s.empty()) 
+		{ 
+			current->next = q.front();
+			break; 
+		}
+		current -> next = s.top();
 		s.pop();
 		current = current->next;
 	}
 
-	print(newHead);
+	print(head);
 }
